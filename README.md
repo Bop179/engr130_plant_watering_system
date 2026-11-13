@@ -15,14 +15,14 @@ An automatic/assistive plant care system that has an automatic watering system t
 
 ### 1. Calibrate Moisture Sensor
 
-- [ ] Get plant and soil
-- [ ] Get reading when soil is dry
-- [ ] Get reading when soil is wet
+- [x] Get plant and soil
+- [x] Get reading when soil is dry
+- [x] Get reading when soil is wet
 
 ### 2. Send signal to pump when plant need watering
 
-- [ ] Make motor do smth when plant needs water to simulate pump
-- [ ] Put tubing somewhere
+- [x] Make motor do smth when plant needs water to simulate pump
+- [x] Put tubing somewhere
 
 ### 3. Allow user device to receive notification and. remote control the pump
 
