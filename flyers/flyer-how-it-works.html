@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Plant Care Tech Sheet</title>
+<style>
+  @page { size: 8.5in 11in; margin: 0; }
+  :root {
+    --forest: #17402c;
+    --leaf: #2f7a4b;
+    --mint: #d8ecd9;
+    --paper: #ffffff;
+    --water: #2b7fb8;
+    --sky: #d6e8f5;
+    --sun: #c98a12;
+    --sand: #fbf0d9;
+    --ink: #1c2420;
+    --muted: #5a665f;
+    --line: #e2e6e1;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: var(--paper); }
+  body {
+    width: 8.5in; height: 11in; overflow: hidden;
+    font-family: "Inter", "Helvetica Neue", Arial, sans-serif; color: var(--ink);
+    -webkit-print-color-adjust: exact; print-color-adjust: exact;
+  }
+  .page { height: 100%; display: flex; flex-direction: column; padding: .5in .55in .45in; }
+
+  header { display: flex; justify-content: space-between; align-items: flex-end; border-bottom: 3px solid var(--forest); padding-bottom: .16in; }
+  .kicker { font-size: 9.5pt; letter-spacing: .18em; text-transform: uppercase; color: var(--leaf); font-weight: 700; }
+  h1 { font-size: 28pt; font-weight: 800; letter-spacing: -.02em; color: var(--forest); line-height: 1.05; margin-top: 4px; }
+  header .right { text-align: right; font-size: 9.5pt; color: var(--muted); line-height: 1.4; }
+
+  h2 { font-size: 12.5pt; font-weight: 800; color: var(--forest); margin-bottom: .1in; letter-spacing: -.005em; }
+  h2 small { font-weight: 500; color: var(--muted); font-size: 9.5pt; margin-left: 6px; }
+
+  .top { display: grid; grid-template-columns: 2.55in 1fr; gap: .3in; margin-top: .26in; }
+  .photo { border-radius: 10px; overflow: hidden; height: 3.35in; position: relative; }
+  .photo img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 55%; display: block; }
+
+  .parts { list-style: none; }
+  .parts li { display: grid; grid-template-columns: .34in 1fr; gap: .1in; padding: .075in 0; border-bottom: 1px solid var(--line); align-items: center; }
+  .parts li:last-child { border-bottom: 0; }
+  .ico { width: .34in; height: .34in; border-radius: 8px; display: grid; place-items: center; }
+  .parts b { font-size: 10.3pt; display: block; }
+  .parts span { font-size: 9.2pt; color: var(--muted); line-height: 1.35; }
+
+  .loop { margin-top: .26in; }
+  .flow { display: grid; grid-template-columns: 1fr .22in 1fr .22in 1fr .22in 1fr; align-items: stretch; }
+  .box { border: 1.5px solid var(--line); border-radius: 10px; padding: .12in .13in; background: #fafbf9; }
+  .box b { font-size: 10pt; display: block; margin-bottom: 3px; }
+  .box span { font-size: 8.8pt; color: var(--muted); line-height: 1.35; display: block; }
+  .box.water { border-color: #b7d4ea; background: #f3f8fc; }
+  .arrow { display: grid; place-items: center; color: #9aa69e; font-size: 14pt; }
+  .repeat { margin-top: 6px; font-size: 8.8pt; color: var(--muted); text-align: right; }
+
+  .score { margin-top: .26in; display: grid; grid-template-columns: 1fr 2.45in; gap: .3in; }
+  .bars { display: grid; gap: .1in; }
+  .bar { display: grid; grid-template-columns: 1.05in 1fr; gap: .12in; align-items: center; font-size: 9.5pt; }
+  .bar .lbl { font-weight: 600; }
+  .track { height: .2in; background: #eef0ec; border-radius: 99px; position: relative; overflow: hidden; }
+  .track i { position: absolute; top: 0; bottom: 0; border-radius: 99px; }
+  .track em { position: absolute; top: 0; bottom: 0; left: 0; right: 0; display: flex; justify-content: space-between; align-items: center; padding: 0 8px; font-style: normal; font-size: 7.6pt; color: var(--muted); }
+  .note { font-size: 9pt; color: var(--muted); line-height: 1.45; margin-top: .06in; }
+  .legend { border-radius: 10px; background: var(--forest); color: #eef5ef; padding: .16in .18in; }
+  .legend .row { display: flex; justify-content: space-between; align-items: center; padding: .06in 0; border-bottom: 1px solid rgba(255,255,255,.15); font-size: 10pt; }
+  .legend .row:last-child { border: 0; }
+  .pill { font-weight: 800; font-size: 9pt; padding: 2px 9px; border-radius: 99px; letter-spacing: .04em; }
+  .legend h3 { font-size: 10.5pt; margin-bottom: .05in; }
+  .legend p { font-size: 8.6pt; opacity: .8; line-height: 1.4; margin-top: .06in; }
+
+  .road { margin-top: .26in; margin-bottom: .14in; display: grid; grid-template-columns: repeat(4, 1fr); gap: .14in; }
+  .ms { border-radius: 10px; padding: .12in .13in; font-size: 9pt; line-height: 1.35; border: 1.5px solid var(--line); }
+  .ms b { display: block; font-size: 9.8pt; margin-bottom: 3px; }
+  .ms .st { font-size: 7.6pt; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; margin-bottom: 4px; display: block; }
+  .ms.done { background: #f1f8f2; border-color: #cfe5d3; }
+  .ms.done .st { color: var(--leaf); }
+  .ms.next { background: var(--sand); border-color: #f0dcb2; }
+  .ms.next .st { color: #8a5a10; }
+  .ms span { color: var(--muted); }
+
+  footer { margin-top: auto; padding-top: .12in; margin-bottom: 0; display: flex; justify-content: space-between; font-size: 9pt; color: var(--muted); border-top: 1px solid var(--line); padding-top: .12in; }
+  footer b { color: var(--forest); }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header>
+    <div>
+      <div class="kicker">ENGR 130 &middot; Project 3 &middot; Tech sheet</div>
+      <h1>Inside the Automatic<br>Plant Care System</h1>
+    </div>
+    <div class="right">Sense &rarr; Score &rarr; Water<br>Runs on a BBC micro:bit</div>
+  </header>
+
+  <div class="top">
+    <div class="photo"><img src="assets/prototype.jpg" alt="Prototype on a window sill"></div>
+    <div>
+      <h2>What&rsquo;s in the build</h2>
+      <ul class="parts">
+        <li>
+          <div class="ico" style="background:var(--mint)"><svg width="18" height="18" viewBox="0 0 18 18"><rect x="2" y="4" width="14" height="10" rx="2" fill="none" stroke="#2f7a4b" stroke-width="1.8"/><circle cx="6.5" cy="9" r="1.3" fill="#2f7a4b"/><circle cx="11.5" cy="9" r="1.3" fill="#2f7a4b"/></svg></div>
+          <div><b>BBC micro:bit + robot:bit board</b><span>The brain. Runs the MicroPython program and drives the pump motor.</span></div>
+        </li>
+        <li>
+          <div class="ico" style="background:var(--sky)"><svg width="18" height="18" viewBox="0 0 18 18"><path d="M9 2.5c3 3.6 4.6 6.1 4.6 8.2A4.6 4.6 0 0 1 4.4 10.7C4.4 8.6 6 6.1 9 2.5z" fill="#2b7fb8"/></svg></div>
+          <div><b>Soil moisture probe</b><span>Analog reading (0&ndash;1023), calibrated in dry and wet soil.</span></div>
+        </li>
+        <li>
+          <div class="ico" style="background:var(--sand)"><svg width="18" height="18" viewBox="0 0 18 18"><circle cx="9" cy="9" r="3.4" fill="#c98a12"/><g stroke="#c98a12" stroke-width="1.6" stroke-linecap="round"><path d="M9 1.8v2M9 14.2v2M1.8 9h2M14.2 9h2M3.9 3.9l1.4 1.4M12.7 12.7l1.4 1.4M3.9 14.1l1.4-1.4M12.7 5.3l1.4-1.4"/></g></svg></div>
+          <div><b>Light + temperature sensing</b><span>Built into the micro:bit &mdash; no extra parts needed.</span></div>
+        </li>
+        <li>
+          <div class="ico" style="background:var(--sky)"><svg width="18" height="18" viewBox="0 0 18 18"><path d="M2 6h8a3 3 0 0 1 3 3v3" stroke="#2b7fb8" stroke-width="1.8" fill="none" stroke-linecap="round"/><path d="M13 13.5c.9 1.1 1.4 1.9 1.4 2.5a1.4 1.4 0 0 1-2.8 0c0-.6.5-1.4 1.4-2.5z" fill="#2b7fb8"/></svg></div>
+          <div><b>Pump + clear tubing</b><span>Delivers a 3-second burst of water straight to the soil.</span></div>
+        </li>
+        <li>
+          <div class="ico" style="background:#e9e9e9"><svg width="18" height="18" viewBox="0 0 18 18"><path d="M3 14V6l6-3 6 3v8l-6 3z" fill="none" stroke="#333" stroke-width="1.6" stroke-linejoin="round"/><path d="M3 6l6 3 6-3M9 9v8" stroke="#333" stroke-width="1.6" fill="none"/></svg></div>
+          <div><b>3D-printed frame</b><span>Holds the controller and routes the tubing beside the pot.</span></div>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <section class="loop">
+    <h2>The control loop <small>repeats every 10 seconds</small></h2>
+    <div class="flow">
+      <div class="box"><b>1 &middot; Read</b><span>Soil moisture, light level and temperature.</span></div>
+      <div class="arrow">&rarr;</div>
+      <div class="box"><b>2 &middot; Compare</b><span>Check each reading against the plant&rsquo;s preferred level.</span></div>
+      <div class="arrow">&rarr;</div>
+      <div class="box"><b>3 &middot; Score</b><span>Average the three sub-scores into one 0&ndash;100 health score.</span></div>
+      <div class="arrow">&rarr;</div>
+      <div class="box water"><b>4 &middot; Act</b><span>Soil too dry? Run the pump. Then scroll the status on the LEDs.</span></div>
+    </div>
+  </section>
+
+  <section class="score">
+    <div>
+      <h2>How the health score works</h2>
+      <div class="bars">
+        <div class="bar"><span class="lbl">Moisture</span><div class="track"><i style="left:38%;width:24%;background:#bcd9ee"></i><em><span>too dry</span><span>ideal &plusmn;10</span><span>too wet</span></em></div></div>
+        <div class="bar"><span class="lbl">Light</span><div class="track"><i style="left:30%;width:40%;background:#f3dfae"></i><em><span>too dim</span><span>ideal &plusmn;50</span><span>too bright</span></em></div></div>
+        <div class="bar"><span class="lbl">Temperature</span><div class="track"><i style="left:36%;width:28%;background:#cfe5d3"></i><em><span>too cold</span><span>ideal &plusmn;10&nbsp;&deg;C</span><span>too hot</span></em></div></div>
+      </div>
+      <p class="note">Inside the ideal band a factor scores 100. Outside it, the score drops by how far the reading is from the target. The overall score is the average of all three.</p>
+    </div>
+    <div class="legend">
+      <h3>What the display shows</h3>
+      <div class="row"><span>Score 82&ndash;100</span><span class="pill" style="background:#8fd0a0;color:#123321">GOOD</span></div>
+      <div class="row"><span>Score 50&ndash;81</span><span class="pill" style="background:#f3d27a;color:#4a3405">OK</span></div>
+      <div class="row"><span>Score below 50</span><span class="pill" style="background:#f0a08f;color:#4a1206">POOR</span></div>
+      <p>Each factor also reports a plain-language status like &ldquo;too dry&rdquo; or &ldquo;too dim&rdquo;.</p>
+    </div>
+  </section>
+
+  <section class="road">
+    <div class="ms done"><span class="st">&#10003; Done</span><b>Calibrate sensor</b><span>Dry and wet soil readings.</span></div>
+    <div class="ms done"><span class="st">&#10003; Done</span><b>Auto-watering</b><span>Pump runs when the plant needs water.</span></div>
+    <div class="ms next"><span class="st">Next up</span><b>Phone control</b><span>Alerts plus remote &ldquo;water now&rdquo; button.</span></div>
+    <div class="ms next"><span class="st">Next up</span><b>More sensors</b><span>Expanded temperature and environment data.</span></div>
+  </section>
+
+  <footer>
+    <span><b>Problem:</b> 54% of owners overwater; 30% struggle with light.</span>
+    <span>ENGR 130 &middot; Project 3</span>
+  </footer>
+
+</div>
+</body>
+</html>

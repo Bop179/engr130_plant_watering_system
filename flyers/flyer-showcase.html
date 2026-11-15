@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Plant Care System Flyer</title>
+<style>
+  @page { size: 8.5in 11in; margin: 0; }
+  :root {
+    --forest: #17402c;
+    --leaf: #2f7a4b;
+    --mint: #d8ecd9;
+    --cream: #f7f3e8;
+    --water: #2b7fb8;
+    --ink: #1c2420;
+    --muted: #55625a;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: var(--cream); }
+  body {
+    width: 8.5in; height: 11in; overflow: hidden;
+    font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
+    color: var(--ink);
+    -webkit-print-color-adjust: exact; print-color-adjust: exact;
+  }
+  .page { position: relative; width: 100%; height: 100%; display: flex; flex-direction: column; }
+
+  /* Hero */
+  .hero {
+    background: var(--forest); color: var(--cream);
+    padding: 0.55in 0.6in 0.5in; position: relative; overflow: hidden;
+    display: grid; grid-template-columns: 1fr 2.9in; gap: 0.35in; align-items: center;
+  }
+  .hero::after {
+    content: ""; position: absolute; right: -1.4in; top: -1.6in;
+    width: 4.2in; height: 4.2in; border-radius: 50%;
+    background: radial-gradient(circle, rgba(216,236,217,.13), rgba(216,236,217,0) 70%);
+  }
+  .kicker {
+    font-size: 10.5pt; letter-spacing: .18em; text-transform: uppercase;
+    color: #a9d3b2; font-weight: 600; margin-bottom: .18in;
+  }
+  h1 { font-size: 40pt; line-height: 1.02; font-weight: 800; letter-spacing: -.02em; }
+  h1 em { font-style: normal; color: #8fd0a0; }
+  .lede { margin-top: .22in; font-size: 12.5pt; line-height: 1.45; color: #dfe9e1; max-width: 3.9in; }
+  .photo {
+    position: relative; z-index: 1;
+    width: 2.9in; height: 3.75in; border-radius: 14px; overflow: hidden;
+    border: 4px solid var(--cream); box-shadow: 0 10px 30px rgba(0,0,0,.35);
+    transform: rotate(2deg);
+  }
+  .photo img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 60%; display: block; }
+  .photo .tag {
+    position: absolute; left: 10px; bottom: 10px;
+    background: rgba(23,64,44,.88); color: var(--cream);
+    font-size: 8pt; font-weight: 600; padding: 4px 8px; border-radius: 4px; letter-spacing: .04em;
+  }
+
+  /* Stats */
+  .stats { display: grid; grid-template-columns: 1fr 1fr; gap: .25in; padding: .4in .6in .1in; }
+  .stat { display: flex; gap: .16in; align-items: center; }
+  .stat .num { font-size: 38pt; font-weight: 800; color: var(--leaf); letter-spacing: -.03em; line-height: 1; }
+  .stat .num.water { color: var(--water); }
+  .stat p { font-size: 10.5pt; line-height: 1.38; color: var(--muted); }
+  .stat p b { color: var(--ink); }
+
+  /* How it works */
+  section.how { padding: .3in .6in 0; }
+  h2 { font-size: 15pt; font-weight: 800; color: var(--forest); margin-bottom: .16in; letter-spacing: -.01em; }
+  .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: .2in; }
+  .step { background: #fff; border-radius: 12px; padding: .2in .2in .22in; border: 1px solid #e3e0d4; position: relative; }
+  .step .n {
+    width: .38in; height: .38in; border-radius: 50%;
+    display: grid; place-items: center; font-weight: 800; font-size: 12pt;
+    background: var(--mint); color: var(--forest); margin-bottom: .12in;
+  }
+  .step:nth-child(3) .n { background: #d6e8f5; color: var(--water); }
+  .step h3 { font-size: 12pt; font-weight: 700; margin-bottom: .06in; }
+  .step p { font-size: 9.8pt; line-height: 1.42; color: var(--muted); }
+
+  /* Features */
+  .features { padding: .32in .6in 0; display: grid; grid-template-columns: 1fr 1fr; gap: .1in .35in; }
+  .feat { display: flex; gap: .12in; align-items: flex-start; font-size: 10.3pt; line-height: 1.38; }
+  .feat svg { flex: none; margin-top: 2px; }
+  .feat b { display: block; color: var(--ink); }
+  .feat span { color: var(--muted); }
+  .soon {
+    display: inline-block; margin-left: 4px; font-size: 7.5pt; font-weight: 700; letter-spacing: .06em;
+    text-transform: uppercase; background: #fde9c8; color: #8a5a10; padding: 1px 6px; border-radius: 3px; vertical-align: 1px;
+  }
+
+  /* Footer */
+  footer {
+    margin-top: auto; background: var(--leaf); color: var(--cream);
+    padding: .26in .6in; display: flex; justify-content: space-between; align-items: center;
+  }
+  footer .big { font-size: 15pt; font-weight: 800; letter-spacing: -.01em; }
+  footer .small { font-size: 9.5pt; opacity: .85; text-align: right; line-height: 1.4; }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header class="hero">
+    <div>
+      <div class="kicker">ENGR 130 &middot; Project 3</div>
+      <h1>Stop guessing.<br>Let your plant <em>tell you</em> what it needs.</h1>
+      <p class="lede">An automatic plant care system that watches soil moisture, light and temperature &mdash; and waters the plant by itself when the soil runs dry.</p>
+    </div>
+    <div class="photo">
+      <img src="assets/prototype.jpg" alt="Working prototype: aloe plant with micro:bit controller, 3D-printed frame and water tubing">
+      <div class="tag">Our working prototype</div>
+    </div>
+  </header>
+
+  <div class="stats">
+    <div class="stat">
+      <div class="num water">54%</div>
+      <p>of plant owners say <b>overwatering</b> is their biggest unintentional plant killer.</p>
+    </div>
+    <div class="stat">
+      <div class="num">30%</div>
+      <p>name <b>the wrong light level</b> as their biggest struggle.</p>
+    </div>
+  </div>
+
+  <section class="how">
+    <h2>How it works</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="n">1</div>
+        <h3>Sense</h3>
+        <p>Every 10 seconds a soil probe, light sensor and thermometer take a fresh reading.</p>
+      </div>
+      <div class="step">
+        <div class="n">2</div>
+        <h3>Score</h3>
+        <p>Readings are compared with your plant&rsquo;s ideal levels to give a 0&ndash;100 health score: <b>good</b>, <b>ok</b> or <b>poor</b>.</p>
+      </div>
+      <div class="step">
+        <div class="n">3</div>
+        <h3>Water</h3>
+        <p>Too dry? The pump switches on for 3 seconds and sends water through the tube. Only when it&rsquo;s needed.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="features">
+    <div class="feat">
+      <svg width="20" height="20" viewBox="0 0 20 20"><circle cx="10" cy="10" r="10" fill="#d8ecd9"/><path d="M5.5 10.3l3 3 6-6.6" stroke="#2f7a4b" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <div><b>No more overwatering</b><span>Waters on soil readings, not on a timer.</span></div>
+    </div>
+    <div class="feat">
+      <svg width="20" height="20" viewBox="0 0 20 20"><circle cx="10" cy="10" r="10" fill="#d8ecd9"/><path d="M5.5 10.3l3 3 6-6.6" stroke="#2f7a4b" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <div><b>Tuned to your plant</b><span>Set its preferred light, moisture and temperature.</span></div>
+    </div>
+    <div class="feat">
+      <svg width="20" height="20" viewBox="0 0 20 20"><circle cx="10" cy="10" r="10" fill="#d8ecd9"/><path d="M5.5 10.3l3 3 6-6.6" stroke="#2f7a4b" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <div><b>Health at a glance</b><span>Status scrolls across the built-in LED display.</span></div>
+    </div>
+    <div class="feat">
+      <svg width="20" height="20" viewBox="0 0 20 20"><circle cx="10" cy="10" r="10" fill="#fde9c8"/><path d="M10 5.5v5l3 2" stroke="#8a5a10" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
+      <div><b>Phone alerts &amp; control <span class="soon">Coming soon</span></b><span>Get notified, then water from your phone.</span></div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="big">Healthier plants, less guesswork.</div>
+    <div class="small">ENGR 130 &middot; Project 3<br>Automatic Plant Care System</div>
+  </footer>
+
+</div>
+</body>
+</html>
