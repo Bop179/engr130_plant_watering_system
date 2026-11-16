@@ -2,10 +2,13 @@
 from microbit import *
 
 import robotbit_library as r
+import radio
 
 M1A = 0x1  # pump motor port
 
 r.setup()  # wake the motor driver
+radio.config(channel=17)
+radio.on()
 
 
 def pump():
@@ -33,6 +36,14 @@ def water_plant(ifwater):
     if ifwater == 1:
         pump()
         print("water has been pumped")
+        radio.send("WATERED")
+
+
+def send_notification(ifwater):
+    if ifwater == 1:
+        radio.send("NEED_WATER")
+    else:
+        radio.send("MOISTURE_OK")
 
 
 def calc_health(light, temp, moisture, time, pref_light, pref_moisture, pref_temp):
@@ -136,6 +147,7 @@ while True:
     ifwater, health_stat = calc_health(
         light, temp, moisture, time, pref_light, pref_moisture, pref_temp
     )
+    send_notification(ifwater)
     water_plant(ifwater)
     display.scroll(health_stat)
     sleep(10000)
